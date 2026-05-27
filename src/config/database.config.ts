@@ -8,5 +8,5 @@ export default registerAs('database', () => ({
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   autoLoadEntities: true, // IMPORTANT: Set to false in production, use migrations instead
-  synchronize: process.env.NODE_ENV !== 'production',
+  synchronize: process.env.DB_SYNC === 'true',
 }));
