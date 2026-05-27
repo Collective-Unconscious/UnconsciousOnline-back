@@ -15,9 +15,15 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   @Exclude()
-  password: string;
+  password?: string;
+
+  @Column({ nullable: true, unique: true })
+  discordId?: string;
+
+  @Column({ nullable: true })
+  avatarUrl?: string;
 
   @Column({ nullable: true })
   name: string;

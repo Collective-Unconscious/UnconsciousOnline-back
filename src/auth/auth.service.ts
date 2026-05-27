@@ -19,7 +19,7 @@ export class AuthService {
   async login(loginDto: LoginDto) {
     const user = await this.usersService.findByEmail(loginDto.email);
 
-    if (!user) {
+    if (!user || !user.password) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
@@ -63,6 +63,40 @@ export class AuthService {
       password: hashedPassword,
       name: registerDto.name,
     });
+
+    const payload = { sub: user.id, email: user.email };
+    const accessToken = this.jwtService.sign(payload);
+
+    return {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      accessToken,
+    };
+  }
+
+  async loginWithDiscord(discordId: string, email: string, name: string, avatarUrl?: string) {
+    let user = await this.usersService.findByDiscordId(discordId);
+
+    if (!user) {
+      user = await this.usersService.findByEmail(email);
+
+      if (user) {
+        await this.usersService.update(user.id, { discordId, avatarUrl });
+        user.discordId = discordId;
+        user.avatarUrl = avatarUrl || user.avatarUrl;
+      } else {
+        user = await this.usersService.create({
+          email,
+          name,
+          discordId,
+          avatarUrl,
+        });
+      }
+    } else if (avatarUrl && user.avatarUrl !== avatarUrl) {
+      await this.usersService.update(user.id, { avatarUrl });
+      user.avatarUrl = avatarUrl;
+    }
 
     const payload = { sub: user.id, email: user.email };
     const accessToken = this.jwtService.sign(payload);
