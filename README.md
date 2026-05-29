@@ -2,20 +2,22 @@
 
 ### Welcome, contributor.
 
-This is the backend API for [the Unconscious Online website](https://unconscious.online). This file will present you the contribution process as well as how to execute this project locally, run tests, and general information about the stack.
+This is the backend for [the Unconscious Online website](https://unconscious.online). This file will present you the contribution process as well as how to execute this project locally, run tests, and general information about the stack.
 
 ## How to contribute to this project ?
 
 Everyone can contribute to this project. You can **create an issue** if you want to report a bug or suggest a feature.
 
-If you want to contributer directly to the code, please create a branch from dev and make a pull request. a maintainer will review it.
+If you want to contributer directly to the code, please create a branch from the `dev` branch and make a pull request. a maintainer will review it.
 
 ## Git workflow
 
-The **master** is the default branch, where production versions will be. Tagged push to this branch will deploy to production and update the API server.
-> Only maintainers can push to the master branch.
+The **`master`** is the default branch, where production versions will be. Tagged push to this branch will deploy to production and update the API server.
+> Only maintainers can push to the `master` branch.
 
-The **dev** branch is where contributors will make pull request to. Tagged push to this branch will deploy to the test API.
+The **`dev`** branch is where contributors will make pull request to. Tagged push to this branch will deploy to the test API.
+
+**Please DO NOT attempt to commit directly on `master` or `dev`.**
 
 ## Running and testing
 
@@ -48,11 +50,11 @@ To start the NestJS project locally, run:
 ```bash
 pnpm start:dev
 ```
-The API will be running on [http://localhost:3001](http://localhost:3001).
+The backend will be running on [http://localhost:3001](http://localhost:3001).
 > The Swagger docs will be available at [http://localhost:3001/api](http://localhost:3001/api) when running.
 
 6. **Running the tests**
-We use **Jest** for testing. To execute unit tests, run:
+To execute unit tests, run:
 ```bash
 pnpm test
 ```
