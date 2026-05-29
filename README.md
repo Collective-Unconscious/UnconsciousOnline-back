@@ -22,38 +22,44 @@ The **`dev`** branch is where contributors will make pull request to. Tagged pus
 ## Running and testing
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/Collective-Unconscious/UnconsciousOnline-back.git
 cd UnconsciousOnline-back
 ```
 
 2. **Install the dependencies**
+
 We use **pnpm** as our package manager. install the dependencies by running:
 ```bash
 pnpm install
 ```
 
 3. **Configure environment variables**
+
 Copy the `.env.example` file to `.env` and fill the variables:
 ```bash
 cp .env.example .env
 ```
 
 4. **Start the development databases**
-We use **Docker** to easily run the databases in development. Execute:
+
+Ensure you have docker installed and running and run:
 ```bash
 docker compose -f docker/docker-compose.dev.yml up -d
 ```
 
 5. **Run the development server**
-To start the NestJS project locally, run:
+
+To start the project locally, run:
 ```bash
 pnpm start:dev
 ```
 The backend will be running on [http://localhost:3001](http://localhost:3001).
-> The Swagger docs will be available at [http://localhost:3001/api](http://localhost:3001/api) when running.
+> The Swagger docs will be available at [http://localhost:3001/api](http://localhost:3001/api/docs) when running.
 
 6. **Running the tests**
+
 To execute unit tests, run:
 ```bash
 pnpm test
@@ -64,10 +70,12 @@ pnpm test:e2e
 ```
 
 7. **Code quality and formatting**
+
 To check for linting issues:
 ```bash
 pnpm lint
 ```
+
 To automatically format the code using **Prettier**:
 ```bash
 pnpm format
